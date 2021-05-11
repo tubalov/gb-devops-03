@@ -21,30 +21,34 @@
 }
 '''
 
+# Формирование структуры
 products = []
 
-user_attr = (input('Введите через пробел характеристики товаров]: ')).split(' ')
-
+user_attr = (input('Введите через пробел характеристики товара: ')).split(' ')
+print('Характеристики товара:', user_attr)
 
 prod_amount = input('Введите количество товаров для ввода: ')
 if prod_amount.isdigit() and int(prod_amount) > 0:
-
     for i in range(int(prod_amount)):
-        user_inp = (input('Введите через пробел название, цену, количество и ед. измерения: ')).split(' ')
-        if len(user_inp) == 4 and user_inp[1].isdigit() and user_inp[2].isdigit():
-            # Сравнить длину списка с атрибутами user_attr и длину списка значений user_inp.
-            # Если ок, то сделать промежуточный список и вложить его в кортеж при формировании
-
-
-            products.append((i+1, {'название': user_inp[0], 'цена': int(user_inp[1]), 'количество': int(user_inp[2]), 'ед': user_inp[3]}))
+        user_inp = (input('Введите через пробел значения характеристик товара: ')).split(' ')
+        if len(user_inp) == len(user_attr):
+            mid_dict = dict()
+            for j in range(len(user_attr)):
+                mid_dict.update({user_attr[j]: user_inp[j]})
+            products.append((i+1, mid_dict))
         else:
             print('Неверный формат ввода')
             continue
 
-print(products)
+print('Структура:', products)
 
+# Формирование аналитики
 prod_attr = {}
 
-
-
-
+for k in range(len(user_attr)):
+    mid_list = []
+    for m in range(len(products)):
+        mid_list.append(products[m][1].get(user_attr[k]))
+    prod_attr.update({user_attr[k]: list(set(mid_list))})
+    
+print('Аналитика:', prod_attr)
