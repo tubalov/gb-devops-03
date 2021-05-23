@@ -19,6 +19,7 @@ for x in count(1, 2):
 
 cycle_list = ['rat', 'cat', 'elephant', 'dog']
 
+
 c = 0
 for i in cycle(cycle_list):
     print(i, end = ' ')
@@ -26,4 +27,3 @@ for i in cycle(cycle_list):
 
     if c > 3 * len(cycle_list):
         break
-
